@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Price Prediction</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #ACB6E5);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            max-width: 100%;
+            width: 400px;
+            box-sizing: border-box;
+            margin: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        input:focus, select:focus {
+            border-color: #74ebd5;
+            outline: none;
+            box-shadow: 0 0 8px rgba(116, 235, 213, 0.4);
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Car Price Prediction</h1>
+        <form action="/predict" method="POST">
+            <label for="name">Car Name:</label>
+            <select id="name" name="name" required>
+                <option value="" disabled selected>Select car brand</option>
+                <option value="Maruti">Maruti</option>
+                <option value="Skoda">Skoda</option>
+                <option value="Honda">Honda</option>
+                <option value="Hyundai">Hyundai</option>
+                <option value="Toyota">Toyota</option>
+                <option value="Ford">Ford</option>
+                <option value="Renault">Renault</option>
+                <option value="Mahindra">Mahindra</option>
+                <option value="Tata">Tata</option>
+                <option value="Chevrolet">Chevrolet</option>
+                <option value="Datsun">Datsun</option>
+                <option value="Jeep">Jeep</option>
+                <option value="Mercedes-Benz">Mercedes-Benz</option>
+                <option value="Mitsubishi">Mitsubishi</option>
+                <option value="Audi">Audi</option>
+                <option value="Volkswagen">Volkswagen</option>
+                <option value="BMW">BMW</option>
+                <option value="Nissan">Nissan</option>
+                <option value="Lexus">Lexus</option>
+                <option value="Jaguar">Jaguar</option>
+                <option value="Land">Land</option>
+                <option value="MG">MG</option>
+                <option value="Volvo">Volvo</option>
+                <option value="Daewoo">Daewoo</option>
+                <option value="Kia">Kia</option>
+                <option value="Fiat">Fiat</option>
+                <option value="Force">Force</option>
+                <option value="Ambassador">Ambassador</option>
+                <option value="Ashok">Ashok</option>
+                <option value="Isuzu">Isuzu</option>
+                <option value="Opel">Opel</option>
+            </select>
+
+            <label for="year">Year:</label>
+            <input type="number" id="year" name="year" min="1900" max="2024" placeholder="Enter year of manufacture" required>
+
+            <label for="km_driven">Kilometers Driven:</label>
+            <input type="number" id="km_driven" name="km_driven" placeholder="Enter kilometers driven" required>
+
+            <label for="fuel">Fuel Type:</label>
+            <select id="fuel" name="fuel" required>
+                <option value="" disabled selected>Select fuel type</option>
+                <option value="Diesel">Diesel</option>
+                <option value="Petrol">Petrol</option>
+                <option value="LPG">LPG</option>
+                <option value="CNG">CNG</option>
+            </select>
+
+            <label for="seller_type">Seller Type:</label>
+            <select id="seller_type" name="seller_type" required>
+                <option value="" disabled selected>Select seller type</option>
+                <option value="Individual">Individual</option>
+                <option value="Dealer">Dealer</option>
+                <option value="Trustmark Dealer">Trustmark Dealer</option>
+            </select>
+
+            <label for="transmission">Transmission Type:</label>
+            <select id="transmission" name="transmission" required>
+                <option value="" disabled selected>Select transmission type</option>
+                <option value="Manual">Manual</option>
+                <option value="Automatic">Automatic</option>
+            </select>
+
+            <label for="owner">Owner Type:</label>
+            <select id="owner" name="owner" required>
+                <option value="" disabled selected>Select owner type</option>
+                <option value="First Owner">First Owner</option>
+                <option value="Second Owner">Second Owner</option>
+                <option value="Third Owner">Third Owner</option>
+                <option value="Fourth & Above Owner">Fourth & Above Owner</option>
+                <option value="Test Drive Car">Test Drive Car</option>
+            </select>
+
+            <label for="mileage">Mileage (km/l):</label>
+            <input type="number" id="mileage" name="mileage" step="0.1" placeholder="Enter mileage" required>
+
+            <label for="engine">Engine (CC):</label>
+            <input type="number" id="engine" name="engine" placeholder="Enter engine capacity" required>
+
+            <label for="max_power">Max Power (bhp):</label>
+            <input type="number" id="max_power" name="max_power" placeholder="Enter max power" required>
+
+            <label for="seats">Number of Seats:</label>
+            <input type="number" id="seats" name="seats" min="1" placeholder="Enter number of seats" required>
+
+            <button type="submit">Predict Price</button>
+        </form>
+    </div>
+</body>
+</html>
